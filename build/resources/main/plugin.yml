@@ -2,3 +2,8 @@ name: JavaForBukkit
 version: '1.0.0'
 main: br.dev.peixotim.javaforbukkit.JavaForBukkit
 api-version: '1.20'
+
+commands:
+  hello:
+    description: "Diz Olá !"
+
