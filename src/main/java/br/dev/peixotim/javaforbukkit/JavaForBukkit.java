@@ -1,11 +1,10 @@
 package br.dev.peixotim.javaforbukkit;
 
+import br.dev.peixotim.javaforbukkit.commands.HelloCommand;
+import br.dev.peixotim.javaforbukkit.commands.PingCommand;
+import br.dev.peixotim.javaforbukkit.commands.SiteCommand;
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.jetbrains.annotations.NotNull;
 
 
 public final class JavaForBukkit extends JavaPlugin {
@@ -13,29 +12,9 @@ public final class JavaForBukkit extends JavaPlugin {
     @Override
     public void onEnable() {
         Bukkit.getLogger().info("Plugin Initialized !");
-    }
-
-    public String userName(){
-        return "Hello";
-    }
-
-    @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (label.equalsIgnoreCase("hello")) {
-            if (sender instanceof Player player) {
-                int ping = player.getPing();
-
-                if (ping < 100) {
-                    player.setExp(1000);
-                    player.sendMessage("Congratulation !");
-                } else {
-                    sender.sendMessage("Hello Console !");
-                }
-
-                player.sendMessage("Hello your ping is : " + ping);
-            }
-        }
-        return true;
+        getCommand("Hello").setExecutor(new HelloCommand());
+        getCommand("Site").setExecutor(new SiteCommand());
+        getCommand("Ping").setExecutor(new PingCommand());
     }
 
     @Override
