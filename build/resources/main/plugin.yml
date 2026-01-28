@@ -1,9 +1,23 @@
 name: JavaForBukkit
-version: '1.0.0'
+version: '1.0.6'
 main: br.dev.peixotim.javaforbukkit.JavaForBukkit
 api-version: '1.20'
 
 commands:
   hello:
-    description: "Diz Olá !"
-
+    description: "Say Hello !"
+    usage: /hello
+  ping:
+    description: "Return ping of user"
+    usage: /myping
+  site:
+    description: "Displays the server's website."
+    usage: /site
+    aliases: ["website"]
+  sum:
+    description: "It adds two values."
+    usage: /sum
+  boots:
+    description: "Grants the player who uses this command the glorious Hermes boots"
+    usage: /boots
+    aliases: ["/botas"]
