@@ -16,7 +16,7 @@ public class BootsListener implements Listener {
     public void onSneak(PlayerToggleSneakEvent event){
         Player player = event.getPlayer();
 
-        if(!player.isSneaking()){
+        if(!event.isSneaking()){
             return;
         }
 
@@ -29,10 +29,12 @@ public class BootsListener implements Listener {
         if (actuallyBoot.hasItemMeta() && actuallyBoot.getItemMeta().hasDisplayName()) {
             String nomeDaBota = actuallyBoot.getItemMeta().getDisplayName();
 
-            var getExp = player.getExp();
+            int levelActually = player.getLevel();
 
-            if(getExp < 0.0){
-                player.sendMessage("§bYou lack the experience to level up, kill mobs, kill enemies and gain experience so you can use the skill granted by Hermes");
+
+            if(levelActually < 1){
+                player.sendMessage("§bYou need at least 1 XP Level to fly!");
+                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1f, 0.5f);
                 return;
             }
 
@@ -41,11 +43,10 @@ public class BootsListener implements Listener {
                 player.setVelocity(direction);
 
                 player.playSound(player.getLocation() , Sound.ENTITY_BAT_TAKEOFF,1.0f,1.0f);
-                player.spawnParticle(Particle.CLOUD,player.getLocation(),10);
+                player.spawnParticle(Particle.SOUL_FIRE_FLAME,player.getLocation(),40);
 
-                player.setExp((float) (getExp - 1.0));
-
-                player.sendMessage("Fly!");
+                player.setLevel(levelActually - 1);
+                player.sendMessage("§aFly! (Cost: 1 Level)");
             }
         }
 

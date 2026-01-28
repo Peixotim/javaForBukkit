@@ -33,7 +33,7 @@ public class BootsCommand implements CommandExecutor {
             }
 
             player.getInventory().setItemInMainHand(bootsOfHermes);
-            player.setExp(10);
+            player.giveExpLevels(10);
             player.sendMessage("§dYou have been granted the Boots of Hermes, a revitalizing power, and you have also been given 10 experience points!");
 
             return true;
